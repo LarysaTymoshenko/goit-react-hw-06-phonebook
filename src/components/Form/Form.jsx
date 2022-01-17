@@ -18,7 +18,7 @@ import s from "./Form.module.css";
   return (
     <form onSubmit={handleSubmit} className={s.form}>
       <label className={s.label}>
-        NAME
+        Name
         <input
           className={s.input}
           type="text"
@@ -34,7 +34,7 @@ import s from "./Form.module.css";
         {""}
       </label>
       <label className={s.label}>
-        NUMBER
+        Number
         <input
           type="tel"
           name="number"
@@ -58,8 +58,8 @@ import s from "./Form.module.css";
 Form.protoType = {
   name: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
- 
 };
+
 const mapDispatchToProps = dispatch => ({
   onSubmit: (name, number, id) => dispatch(contactActions.addContact(name, number, id)),
 })

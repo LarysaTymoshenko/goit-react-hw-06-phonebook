@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
 import Form from "../Form/Form";
 import Section from "../Section/Section";
 import ListContacts from "../ListContacts/ListContacts";
@@ -8,11 +7,11 @@ import { getFromLS, setInLS } from "../../utilits/localstorage";
 
 export default function App() {
   const [contacts, setContacts] = useState(getFromLS("contacts"));
-  const [filter, setFilter] = useState("");
+ const [filter, setFilter] = useState("");
 
-  const onCheckContact = (value) => {
-    return contacts.find((el) => el.name.toUpperCase() === value.toUpperCase());
-  };
+  // const onCheckContact = (value) => {
+  //   return contacts.find((el) => el.name.toUpperCase() === value.toUpperCase());
+  // };
 
   // const onAddContact = (name, number) => {
   //   if (onCheckContact(name)) {
@@ -37,13 +36,11 @@ export default function App() {
   return (
     <>
       <Section title="Phonebook">
-        <Form  />
+        <Form />
       </Section>
       <Section title="Contact">
-        {contacts.length >= 2 && (
-          <Filter filter={filter} onFilter={setFilter} />
-        )}
-        <ListContacts  />
+          <Filter filter={filter} onFilter={setFilter}/>
+        <ListContacts/>
       </Section>
     </>
   );

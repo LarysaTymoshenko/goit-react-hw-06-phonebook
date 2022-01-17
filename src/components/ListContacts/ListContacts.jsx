@@ -13,7 +13,6 @@ const ListContacts = ({ contacts = [], onDelete }) => {
           <li key={id}>
             <ContactItem
               className={s.item}
-              id={id}
               name={name}
               number={number}
               onDelete={onDelete}
