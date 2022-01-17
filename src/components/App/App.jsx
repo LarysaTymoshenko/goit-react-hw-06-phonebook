@@ -14,22 +14,22 @@ export default function App() {
     return contacts.find((el) => el.name.toUpperCase() === value.toUpperCase());
   };
 
-  const onAddContact = (name, number) => {
-    if (onCheckContact(name)) {
-      alert(`${name} and  is already in contacts`);
-      return;
-    }
-    const newContact = { id: nanoid(), name, number };
-    setContacts((contacts) => [newContact, ...contacts]);
-  };
+  // const onAddContact = (name, number) => {
+  //   if (onCheckContact(name)) {
+  //     alert(`${name} and  is already in contacts`);
+  //     return;
+  //   }
+  //   const newContact = { id: nanoid(), name, number };
+  //   setContacts((contacts) => [newContact, ...contacts]);
+  // };
 
-  const onDeleteContacts = (id) => {
-    setContacts((prevState) => ({
-      contacts: prevState.contacts.filter((el) => el.id !== id),
-    }));
-  };
+  // const onDeleteContacts = (id) => {
+  //   setContacts((prevState) => ({
+  //     contacts: prevState.contacts.filter((el) => el.id !== id),
+  //   }));
+  // };
 
-  //
+
 
   useEffect(() => {
     setInLS("contacts", contacts);
@@ -37,13 +37,13 @@ export default function App() {
   return (
     <>
       <Section title="Phonebook">
-        <Form onSubmit={onAddContact} />
+        <Form  />
       </Section>
       <Section title="Contact">
         {contacts.length >= 2 && (
           <Filter filter={filter} onFilter={setFilter} />
         )}
-        <ListContacts contacts={contacts} onDelete={onDeleteContacts} />
+        <ListContacts  />
       </Section>
     </>
   );

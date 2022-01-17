@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import deleteActions from "../../redux/contact/contact-actions";
 import ContactItem from "../ContactItem/ContactItem";
 import s from "./ListContact.module.css";
 
@@ -32,4 +34,9 @@ ListContacts.propTypes = {
   ),
   onDelete: PropTypes.func.isRequired,
 };
-export default ListContacts;
+const mapStateToProps = state => ({contacts: state.contacts.items});
+
+const mapDispatchToProps = dispatch => ({
+ onDelete: (id) => dispatch(deleteActions.deleteContact(id)),
+})
+export default connect( mapStateToProps,mapDispatchToProps)(ListContacts);
