@@ -11,7 +11,7 @@ function ContactItem({ id, name, number, onDelete }) {
         className={s.button}
         data-id={id}
         onClick={() => {
-          onDelete(id);
+        onDelete(id);
         }}
       >
         Delete

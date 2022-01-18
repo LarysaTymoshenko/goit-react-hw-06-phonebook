@@ -7,11 +7,11 @@ import { getFromLS, setInLS } from "../../utilits/localstorage";
 
 export default function App() {
   const [contacts, setContacts] = useState(getFromLS("contacts"));
- const [filter, setFilter] = useState("");
+//  const [filter, setFilter] = useState("");
 
-  // const onCheckContact = (value) => {
-  //   return contacts.find((el) => el.name.toUpperCase() === value.toUpperCase());
-  // };
+//   const onCheckContact = (value) => {
+//     return contacts.find((el) => el.name.toUpperCase() === value.toUpperCase());
+//   };
 
   // const onAddContact = (name, number) => {
   //   if (onCheckContact(name)) {
@@ -28,19 +28,25 @@ export default function App() {
   //   }));
   // };
 
-
+const getfilter = () => {
+    const normalizeFilter = contacts.filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizeFilter),
+    );
+  };
 
   useEffect(() => {
     setInLS("contacts", contacts);
   }, [contacts]);
+
   return (
     <>
       <Section title="Phonebook">
         <Form />
       </Section>
       <Section title="Contact">
-          <Filter filter={filter} onFilter={setFilter}/>
-        <ListContacts/>
+          <Filter />
+        <ListContacts  contacts={ getfilter} />
       </Section>
     </>
   );

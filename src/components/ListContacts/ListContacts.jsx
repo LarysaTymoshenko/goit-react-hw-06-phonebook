@@ -14,6 +14,7 @@ const ListContacts = ({ contacts = [], onDelete }) => {
             <ContactItem
               className={s.item}
               name={name}
+              id={id}
               number={number}
               onDelete={onDelete}
             />
@@ -33,8 +34,17 @@ ListContacts.propTypes = {
   ),
   onDelete: PropTypes.func.isRequired,
 };
-const mapStateToProps = state => ({contacts: state.contacts.items});
 
+
+// const getContact = (allContacts, filter) => {
+//   // const allContacts = { contacts: state.contacts.items.name };
+//   const normalFilter = filter.toLowerCase();
+//   return allContacts.filter(({ contact }) => contact.toLowerCase().includes(normalFilter));
+// };
+// const mapStateToProps =({ contacts: { items, filter } }) => ({
+//   contacts: getContact(items, filter),
+// });
+const mapStateToProps = state => ({ contacts: state.contacts.items });
 const mapDispatchToProps = dispatch => ({
  onDelete: (id) => dispatch(deleteActions.deleteContact(id)),
 })
