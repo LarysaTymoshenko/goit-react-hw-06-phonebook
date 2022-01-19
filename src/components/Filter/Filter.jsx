@@ -27,7 +27,7 @@ Filter.propTypes = {
   onChange: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({ value: state.contacts.filter });
+ const mapStateToProps = (state) => ({ value: state.contacts.filter });
 
 // const getContact = (allContacts, filter) => {
 //   // const allContacts = { contacts: state.contacts.items.name };
