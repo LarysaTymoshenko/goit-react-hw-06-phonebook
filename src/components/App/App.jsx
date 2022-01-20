@@ -46,7 +46,7 @@ const [filter, setFilter] = useState("");
         <Form />
       </Section>
       <Section title="Contact">
-          <Filter filter={filter} onChange={setFilter} />
+          <Filter/>
         <ListContacts  />
       </Section>
     </>

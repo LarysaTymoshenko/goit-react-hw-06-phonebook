@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import FilterActions from "../../redux/contact/contact-actions";
 import s from "./Filter.module.css";
 
-function Filter({ value, onChange}) {
+function Filter({ filter, onChange}) {
   return (
     <label className={s.label}>
       Find contact by name
@@ -12,7 +12,7 @@ function Filter({ value, onChange}) {
         name="name"
         className={s.input}
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        value={value}
+        value={filter}
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         onChange={onChange}

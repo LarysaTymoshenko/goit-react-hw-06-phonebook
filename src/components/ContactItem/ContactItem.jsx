@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
 import s from "./ContactItem.module.css";
 
 function ContactItem({ id, name, number, onDelete }) {
@@ -27,4 +28,17 @@ ContactItem.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-export default ContactItem;
+
+const getVisibleContact = (contacts, filter) => {
+  const normalizedFilter = filter.toLowerCase();
+
+  return contacts.filter(({ text }) =>
+    text.toLowerCase().includes(normalizedFilter),
+  );
+};
+
+const mapStateToProps = ({ contacts: { items, filter } }) => ({
+  contacts: getVisibleContact(items, filter),
+});
+export default connect(mapStateToProps)(ContactItem);
+// export default ContactItem;
