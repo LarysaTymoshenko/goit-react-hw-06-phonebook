@@ -29,14 +29,6 @@ Filter.propTypes = {
 
  const mapStateToProps = (state) => ({ value: state.contacts.filter });
 
-// const getContact = (allContacts, filter) => {
-//   // const allContacts = { contacts: state.contacts.items.name };
-//   const normalFilter = filter.toLowerCase();
-//   return allContacts.filter(({ contact }) => contact.toLowerCase().includes(normalFilter));
-// };
-// const mapStateToProps = ({ contacts: { items:{name}, filter } }) => ({
-//   contacts: getContact(name, filter),
-// });
 const mapDispatchToProps = dispatch => ({
   onChange: (e) => dispatch( FilterActions.changeFilter(e.target.value)),
 })

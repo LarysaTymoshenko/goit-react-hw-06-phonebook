@@ -35,16 +35,19 @@ ListContacts.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
+// const getVisibleContact = (contacts, filter) => {
+//   const normalizedFilter = filter.toLowerCase();
 
-const getContact = (allContacts, filter) => {
-  // const allContacts = { contacts: state.contacts.items.name };
-  const normalFilter = filter.toLowerCase();
-  return allContacts.filter(({ contact }) => contact.toLowerCase().includes(normalFilter));
-};
-const mapStateToProps =({ contacts: { items, filter } }) => ({
-  contacts: getContact(items, filter),
-});
-// const mapStateToProps = state => ({ contacts: state.contacts.items });
+//   return contacts.filter(({ text }) =>
+//     text.toLowerCase().includes(normalizedFilter),
+//   );
+// };
+
+// const mapStateToProps = ({ contacts: { items, filter } }) => ({
+//   contacts: getVisibleContact(items, filter),
+// });
+
+const mapStateToProps = state => ({ contacts: state.contacts.items });
 const mapDispatchToProps = dispatch => ({
  onDelete: (id) => dispatch(deleteActions.deleteContact(id)),
 })
