@@ -58,6 +58,7 @@ import s from "./Form.module.css";
 Form.protoType = {
   name: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
+
 };
 
 const mapDispatchToProps = dispatch => ({
