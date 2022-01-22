@@ -33,7 +33,7 @@ const middleware = [
   logger,
 ];
 
-// const persistedReducer = persistReducer(persistConfig, contactReducer);
+//  const persistedReducer = persistReducer(persistConfig, contactReducer);
 
 const store = configureStore({
   reducer: {

@@ -1,5 +1,5 @@
-// import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 import  actions from '../../redux/contact/contact-actions';
 import Form from "../Form/Form";
 import Section from "../Section/Section";
@@ -12,18 +12,19 @@ import {
 } from '../../redux/contact/contact-selector';
 
 export default function App() {
-  // const [contacts, setContacts] = useState(getFromLS("contacts"));
-// const [filter, setFilter] = useState("");
+
   const contacts = useSelector(filterContacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
-  const formSubmitHandler = data => {
-    let newName = contacts.find(elem => elem.name.includes(data.name));
-     if (!newName) {
-      dispatch(actions.addContact([...contacts, {...data }]));
+  const formSubmitHandler = (items) => {
+    let newName = contacts.find(elem => elem.name.includes(items));
+    if (!newName) {
+        // const userId = { id: nanoid() };
+      dispatch(actions.addContact([...contacts, ...items]));
     } else {
-      alert(`${newName.name} is already in contacts`,);
+       alert(`${newName.name} is already in contacts`,);
+        return;
     }
   }
   // const onCheckContact = (value) => {
@@ -35,6 +36,7 @@ export default function App() {
   //     alert(`${name} and  is already in contacts`);
   //     return;
   //   }
+  // }
   //   const newContact = { id: nanoid(), name, number };
   //   setContacts((contacts) => [newContact, ...contacts]);
   // };
@@ -42,19 +44,14 @@ export default function App() {
   const onDelete = (id) =>  {
     dispatch(actions.deleteContact(id));
   };
-   const handleChange = e => {
-    const { value } = e.currentTarget;
-    dispatch(actions.changeFilter(value));
-  };
-
-
+  
   return (
     <>
       <Section title="Phonebook">
         <Form onSubmit={formSubmitHandler}/>
       </Section>
       <Section title="Contact">
-          <Filter value={filter} onChange={handleChange}/>
+          <Filter />
         <ListContacts contacts={contacts} onDelete={onDelete} />
       </Section>
     </>
