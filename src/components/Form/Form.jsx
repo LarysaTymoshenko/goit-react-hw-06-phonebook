@@ -16,7 +16,7 @@ export default function Form({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit} className={s.form}>
       <label className={s.label}>
-        NAME
+        Name
         <input
           className={s.input}
           type="text"
@@ -32,7 +32,7 @@ export default function Form({ onSubmit }) {
         {""}
       </label>
       <label className={s.label}>
-        NUMBER
+        Number
         <input
           type="tel"
           name="number"

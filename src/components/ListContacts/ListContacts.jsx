@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+//  import { connect } from 'react-redux';
 import ContactItem from "../ContactItem/ContactItem";
 import s from "./ListContact.module.css";
 
-const ListContacts = ({ contacts, onDelete }) => {
+const ListContacts = ({ contacts = [], onDelete }) => {
   return (
     <>
       <ul>
@@ -32,4 +33,5 @@ ListContacts.propTypes = {
   ),
   onDelete: PropTypes.func.isRequired,
 };
-export default ListContacts;
+
+ export default ListContacts;
