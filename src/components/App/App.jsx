@@ -18,12 +18,12 @@ export default function App() {
   const dispatch = useDispatch();
  
  const onAddContacts = data => {
-    let isUniqueName = contacts.find(elem => elem.name.includes(data.name));
+    let isNewName = contacts.find(elem => elem.name.includes(data.name));
 
-    if (!isUniqueName) {
+    if (!isNewName) {
       dispatch(actions.addContact([...contacts,  ...data]));
     } else {
-      alert(`${isUniqueName} and  is already in contacts`);
+      alert(`${isNewName} and  is already in contacts`);
       return;
     }
   };
