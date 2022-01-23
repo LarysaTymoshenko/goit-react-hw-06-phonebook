@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import ContactItem from "../ContactItem/ContactItem";
 import s from "./ListContact.module.css";
 
-const ListContacts = ({ contacts = [], onDelete }) => {
+const ListContacts = ({ contacts, onDelete }) => {
   return (
     <>
       <ul>

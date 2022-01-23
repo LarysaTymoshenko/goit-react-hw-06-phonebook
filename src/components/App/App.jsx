@@ -1,32 +1,33 @@
 import { useDispatch, useSelector } from 'react-redux';
 // import { useState, useEffect } from "react";
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 import  actions from '../../redux/contact/contact-actions';
 import Form from "../Form/Form";
 import Section from "../Section/Section";
 import ListContacts from "../ListContacts/ListContacts";
 import Filter from "../Filter/Filter";
-import { getFromLS, setInLS } from "../../utilits/localstorage";
+// import { getFromLS, setInLS } from "../../utilits/localstorage";
 import {
   filterContacts,
   getFilter,getContacts
 } from '../../redux/contact/contact-selector';
 
 export default function App() {
-
   const contacts = useSelector(filterContacts)
   // const filter = useSelector(getFilter);
   const dispatch = useDispatch();
+ 
+ const onAddContacts = data => {
+    let isUniqueName = contacts.find(elem => elem.name.includes(data.name));
 
- const onAddContact = (id,name, number) => {
-    if (name) {
-      alert(`${name} and  is already in contacts`);
+    if (!isUniqueName) {
+      dispatch(actions.addContact([...contacts,  ...data]));
+    } else {
+      alert(`${isUniqueName} and  is already in contacts`);
       return;
     }
-   const newContact = { id, name, number };
-    dispatch(actions.addContact([newContact,...contacts]));
   };
-
+ 
   const onDelete = (id) =>  {
     dispatch(actions.deleteContact(id));
   };
@@ -34,7 +35,7 @@ export default function App() {
   return (
     <>
       <Section title="Phonebook">
-        <Form onSubmit={onAddContact}/>
+        <Form onSubmit={onAddContacts}/>
       </Section>
       <Section title="Contact">
           <Filter/>
