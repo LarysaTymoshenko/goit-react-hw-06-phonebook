@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 // import { useState, useEffect } from "react";
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import  actions from '../../redux/contact/contact-actions';
 import Form from "../Form/Form";
 import Section from "../Section/Section";

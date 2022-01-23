@@ -8,7 +8,7 @@ import actions from './contact-actions';
 //   }
 // };
 const items = createReducer([], {
-  [actions.addContact]: (state, { payload }) => [...state, payload],
+  [actions.addContact]: (state, action) => action.payload,
   [actions.deleteContact]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
