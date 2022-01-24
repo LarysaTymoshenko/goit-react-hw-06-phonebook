@@ -1,16 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { createAction } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
 
-const addContact = createAction('contact/add', ({ name, number }) => ({
-  payload: {
-    id: nanoid(),
-    name,
-    number,
-  },
-}));
+const addContact = createAction('contacts/add');
 
-const deleteContact = createAction('contact/delete');
-const changeFilter = createAction('contact/filter');
-
-export default { addContact, deleteContact, changeFilter };
+const deleteContact = createAction('contacts/delete');
+const setFilter = createAction('contacts/filter');
+export default { addContact, deleteContact, setFilter };

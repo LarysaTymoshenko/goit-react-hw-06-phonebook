@@ -1,8 +1,4 @@
-import {
-  configureStore,
-  getDefaultMiddleware,
-  combineReducers,
-} from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import {
   persistStore,
@@ -14,17 +10,17 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import contactReducer from './contact/contact-reducer.js';
+import { contactsReducer } from './contact/contact-reducer.js';
 import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
-  key: 'contacts',
+  key: 'root',
   storage,
-  blacklist: ['filter'],
 };
-const rootReducer = combineReducers({ contacts: contactReducer });
 
-const middleware = [
+const rootReducer = persistReducer(persistConfig, contactsReducer);
+
+const middleware = getDefaultMiddleware => [
   ...getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
@@ -33,14 +29,12 @@ const middleware = [
   logger,
 ];
 
-//  const persistedReducer = persistReducer(persistConfig, contactReducer);
-
 const store = configureStore({
-  reducer: {
-    contacts: persistReducer(persistConfig, rootReducer),
-  },
+  reducer: rootReducer,
   middleware,
+  devTools: process.env.NODE_ENV === 'development',
 });
+
 const persistor = persistStore(store);
 
-export default { store, persistor };
+export const rootStore = { store, persistor };

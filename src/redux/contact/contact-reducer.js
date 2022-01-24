@@ -1,23 +1,41 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import actions from './contact-actions';
-// {
-//   contacts: {
-//   items: [],
-//   filter: ""
-//   }
-// };
-const items = createReducer([], {
-  [actions.addContact]: (state, action) => action.payload,
-  [actions.deleteContact]: (state, { payload }) =>
-    state.filter(({ id }) => id !== payload),
-});
+import { current } from 'immer';
 
-const filter = createReducer('', {
-  [actions.changeFilter]: (_, { payload }) => payload,
-});
+const contacts = { items: [], filter: '' };
 
-export default combineReducers({
-  items,
-  filter,
-});
+export const contactsReducer = createReducer(
+  { contacts },
+  {
+    [actions.addContact]: (state, { payload }) => {
+      const currentState = current(state);
+      return {
+        contacts: {
+          ...currentState.contacts,
+          items: [...currentState.contacts.items, payload],
+        },
+      };
+    },
+    [actions.deleteContact]: (state, { payload }) => {
+      const currentState = current(state);
+      return {
+        contacts: {
+          ...currentState.contacts,
+          items: [
+            ...currentState.contacts.items.filter(item => item.id !== payload),
+          ],
+        },
+      };
+    },
+    [actions.setFilter]: (state, { payload }) => {
+      const currentState = current(state);
+      return {
+        contacts: {
+          ...currentState.contacts,
+          filter: payload,
+        },
+      };
+    },
+  },
+);

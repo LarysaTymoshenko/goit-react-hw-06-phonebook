@@ -1,14 +1,27 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getContacts
+} from '../../redux/contact/contact-selector';
+import { nanoid } from 'nanoid';
+import  actions from '../../redux/contact/contact-actions';
 import s from "./Form.module.css";
 
-export default function Form({ onSubmit }) {
+export default function Form() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(name, number);
+   const contact = { id: nanoid(), name, number }
+    if (contacts.filter((el) => el.name === name).length !== 0) {
+      alert(`Contacts ${name} already exist`)
+    } else {
+      dispatch(actions.addContact(contact))
+    }
     setName("");
     setNumber("");
   };

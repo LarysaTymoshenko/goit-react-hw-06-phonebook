@@ -1,26 +1,28 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-//  import { connect } from 'react-redux';
+import {
+  filterContacts
+} from '../../redux/contact/contact-selector';
 import ContactItem from "../ContactItem/ContactItem";
 import s from "./ListContact.module.css";
 
-const ListContacts = ({ contacts, onDelete }) => {
+
+const ListContacts = () => {
+  const contacts = useSelector(filterContacts);
+ 
   return (
-    <>
       <ul>
-        {contacts.map(({ id, name, number }) => (
-          <li key={id}>
+      {contacts.map(({ id, name, number }) => (
             <ContactItem
-              className={s.item}
-              id={id}
-              name={name}
-              number={number}
-              onDelete={onDelete}
+            key={id}
+            className={s.item}
+            name={name}
+            number={number}
             />
-          </li>
         ))}
       </ul>
-    </>
+  
   );
 };
 ListContacts.propTypes = {
@@ -31,7 +33,7 @@ ListContacts.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ),
-  onDelete: PropTypes.func.isRequired,
+ 
 };
 
  export default ListContacts;
