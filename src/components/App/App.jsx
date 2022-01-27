@@ -7,7 +7,7 @@ import Filter from "../Filter/Filter";
 export default function App() {
  
   return (
-    <>
+    <div>
       <Section title="Phonebook">
         <Form />
       </Section>
@@ -15,6 +15,6 @@ export default function App() {
           <Filter/>
         <ListContacts />
       </Section>
-    </>
+    </div>
   );
 }

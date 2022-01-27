@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getContacts
 } from '../../redux/contact/contact-selector';
-import { nanoid } from 'nanoid';
 import  actions from '../../redux/contact/contact-actions';
 import s from "./Form.module.css";
 
@@ -16,7 +15,7 @@ export default function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   const contact = { id: nanoid(), name, number }
+   const contact = { name, number }
     if (contacts.filter((el) => el.name === name).length !== 0) {
       alert(`Contacts ${name} already exist`)
     } else {
@@ -69,5 +68,4 @@ export default function Form() {
 Form.protoType = {
   name: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
-
 };

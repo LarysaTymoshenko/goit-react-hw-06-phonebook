@@ -5,7 +5,7 @@ import  actions from '../../redux/contact/contact-actions';
 import {
   filterContacts
 } from '../../redux/contact/contact-selector';
-import ContactItem from "../ContactItem/ContactItem";
+import ContactItem from "./ContactItem/ContactItem";
 import s from "./ListContact.module.css";
 
 
@@ -20,8 +20,8 @@ const ListContacts = () => {
             <ContactItem
             key={id}
             className={s.item}
-            name={name}
-          number={number}
+          name={name}
+           number={number}
            onDeleteContact={() => onDeleteContact(id)}
             />
         ))}
